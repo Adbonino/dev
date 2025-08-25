@@ -1,14 +1,14 @@
 ---
 - name: Configure NTP servers
-  hosts: SAN1
+  hosts: all
   gather_facts: false
   collections:
     - brocade.fos
   vars:
     credential:
       fos_ip_addr: "{{ inventory_hostname }}"
-      fos_user_name: admin
-      fos_password: "TuPassword"
+      fos_user_name: "{{ ansible_user }}"
+      fos_password: "{{ ansible_password }}"
       https: false
   tasks:
     - name: Set clock server configuration
