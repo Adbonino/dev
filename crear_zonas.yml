@@ -9,7 +9,7 @@
     - zones.yaml  
   vars:
     credential:
-      fos_ip_addr: "{{ fos_ip_addr }}"
+      fos_ip_addr: "{{ inventory_hostname }}"
       fos_user_name: "{{ ansible_user }}"
       fos_password: "{{ ansible_password }}"
       https: true
