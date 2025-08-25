@@ -1,5 +1,5 @@
 ---
-- name: Configure DNS servers
+- name: Configuraicon de Servidores DNS
   hosts: all
   gather_facts: false
   collections:
@@ -11,7 +11,7 @@
       fos_password: "{{ ansible_password }}"
       https: false
   tasks:
-    - name: Set DNS servers
+    - name: Setear servidor DNS
       brocade_fibrechannel_switch:
         credential: "{{ credential }}"
         vfid: -1
