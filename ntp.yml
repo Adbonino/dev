@@ -1,0 +1,22 @@
+---
+- name: Configure NTP servers
+  hosts: SAN1
+  gather_facts: false
+  collections:
+    - brocade.fos
+  vars:
+    credential:
+      fos_ip_addr: "{{ inventory_hostname }}"
+      fos_user_name: admin
+      fos_password: "TuPassword"
+      https: false
+  tasks:
+    - name: Set clock server configuration
+      brocade_time_clock_server:
+        credential: "{{ credential }}"
+        vfid: -1
+        clock_server:
+          ntp_server_address:
+            server_address:
+              - "10.38.2.80"
+              - "10.38.2.81"
