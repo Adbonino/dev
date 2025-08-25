@@ -1,0 +1,31 @@
+---
+- name: Crear zonas en Brocade SAN Switch G7200
+  hosts: all
+  gather_facts: no
+  collections:
+    - brocade.fos
+
+  vars_files:
+    - zones.yaml  
+  vars:
+    credential:
+      fos_ip_addr: "{{ fos_ip_addr }}"
+      fos_user_name: "{{ ansible_user }}"
+      fos_password: "{{ ansible_password }}"
+      https: true
+      throttle: 1
+      timeout: 30
+      
+  tasks:
+    - name: Crear cada zona con sus miembros
+      brocade.fos.brocade_zoning_zone:
+        credential: "{{ credential }}"
+        vfid: "{{ vfid }}"
+        zones:
+          - name: "{{ item.name }}"
+            members: "{{ item.members }}"
+        members_add_only: true
+      loop: "{{ zones }}"
+      # loop: "{{ zones | selectattr('estado', 'defined') | selectattr('estado', 'equalto', 'ok') | list }}"
+      register: zones_result
+      ignore_errors: yes
