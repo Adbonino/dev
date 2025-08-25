@@ -1,5 +1,5 @@
 ---
-- name: Configure NTP servers
+- name: Configuracion de servidores NTP
   hosts: all
   gather_facts: false
   collections:
@@ -11,7 +11,7 @@
       fos_password: "{{ ansible_password }}"
       https: false
   tasks:
-    - name: Set clock server configuration
+    - name: Setear servidor NTP
       brocade_time_clock_server:
         credential: "{{ credential }}"
         vfid: -1
