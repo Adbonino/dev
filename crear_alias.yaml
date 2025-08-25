@@ -6,13 +6,13 @@
     - brocade.fos
     
   vars:
-  credential:
-    fos_ip_addr: "{{ fos_ip_addr }}"
-    fos_user_name: "{{ ansible_user }}"
-    fos_password: "{{ ansible_password }}"
-    https: true
-    throttle: 1
-    timeout: 30
+    credential:
+      fos_ip_addr: "{{ inventory_hostname }}"
+      fos_user_name: "{{ ansible_user }}"
+      fos_password: "{{ ansible_password }}"
+      https: true
+      throttle: 1
+      timeout: 30
 
   vars_files:
     - alias_test.yaml
