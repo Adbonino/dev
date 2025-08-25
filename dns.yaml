@@ -18,5 +18,5 @@
         switch:
           dns_servers:
             dns_server:
-              - "8.8.8.8"
-              - "8.8.4.4"
+              - "w2k8s-20"
+              - "W2k8s-16"
