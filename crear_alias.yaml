@@ -1,0 +1,36 @@
+---
+- name: Crear alias en Brocade SAN Switch G720
+  hosts: brocade_switch
+  gather_facts: no
+  collections:
+    - brocade.fos
+    
+  vars:
+  credential:
+    fos_ip_addr: "{{ fos_ip_addr }}"
+    fos_user_name: "{{ ansible_user }}"
+    fos_password: "{{ ansible_password }}"
+    https: true
+    throttle: 1
+    timeout: 30
+
+  vars_files:
+    - alias_test.yaml
+
+  tasks:
+    - name: Crear alias en el switch
+      brocade.fos.brocade_zoning_alias:
+        credential: "{{ credential }}"
+        vfid: -1
+        aliases:
+          - name: "{{ item.name }}"
+            members:
+              - "{{ item.wwn }}"
+        members_add_only: true
+      loop: "{{ aliases }}"
+      register: alias_result
+      ignore_errors: yes
+
+    - name: Mostrar resultado de la creación de aliases
+      debug:
+        var: alias_result
