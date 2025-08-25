@@ -18,5 +18,5 @@
         clock_server:
           ntp_server_address:
             server_address:
-              - "10.38.2.80"
-              - "10.38.2.81"
+              - "ntp.interbanco.com.py"
+              - "ntp1.interbanco.com.py"
